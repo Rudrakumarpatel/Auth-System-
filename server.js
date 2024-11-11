@@ -7,6 +7,9 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const path = require('path');
 
+
+const _dirname=path.resolve();
+
 dotenv.config();
 const app = express();
 
@@ -24,23 +27,18 @@ mongoose.connect(process.env.MONGO_DB)
   .catch(err => console.error('Failed to connect to MongoDB', err));
 
 
-// app.use(express.static(path.resolve(_dirname, "auth-frontend", "dist")));
-// app.use(express.json());
-// app.use(express.static('public'))
-// app.use('/images',express.static("images"))
+app.use(express.static(path.resolve(_dirname, "frontend", "dist")));
+app.use(express.json());
+app.use(express.static('public'))
+app.use('/images',express.static("images"))
 
-// app.get("*",(req, res) => {
-//     res.sendFile(path.resolve(_dirname,"auth-frontend","dist","index.html"));
-// })
+app.get("*",(req, res) => {
+    res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"));
+})
 
 // Use the auth routes
 app.use('/api/auth', authRoutes);
 
-app.get("/",(req,res)=>
-  {
-      app.use(express.static(path.resolve(__dirname,"frontend","dist")));
-      res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"));
-  })
 
 // Start the server
 app.listen(PORT, () => {
