@@ -8,13 +8,15 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    const backendDomin = `${window.location.origin}`
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', {
+            const response = await axios.post(`${backendDomin}/api/auth/register`, {
                 username,
                 password,
             });
