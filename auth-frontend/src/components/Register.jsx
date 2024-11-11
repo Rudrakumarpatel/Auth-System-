@@ -8,7 +8,6 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const backendDomin = `${window.location.origin}`
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,7 +15,7 @@ const Register = () => {
         setSuccess('');
 
         try {
-            const response = await axios.post(`${backendDomin}/api/auth/register`, {
+            const response = await axios.post(`${window.location.origin}/api/auth/register`, {
                 username,
                 password,
             });
