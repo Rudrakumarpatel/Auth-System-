@@ -22,32 +22,41 @@ const Register = () => {
             setUsername('');
             setPassword('');
         } catch (err) {
-            setError(err.response.data.errors[0].msg || 'Registration failed');
+            setError(err.response?.data?.errors?.[0]?.msg || 'Registration failed');
         }
     };
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Register</button>
-            </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+        <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">Register</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button
+                        type="submit"
+                        className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                        Register
+                    </button>
+                </form>
+                {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
+                {success && <p className="mt-4 text-green-500 text-center">{success}</p>}
+            </div>
         </div>
     );
 };

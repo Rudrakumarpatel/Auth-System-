@@ -7,20 +7,26 @@ import Register from './components/Register';
 const App = () => {
     return (
         <Router>
-            <div style={{ textAlign: 'center', marginTop: '50px' }}>
-                <h1>User Authentication System</h1>
-                <div>
+            <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+                <h1 className="text-4xl font-bold text-white mb-8">User Authentication System</h1>
+                <div className="flex space-x-4 mb-8">
                     <Link to="/login">
-                        <button style={{ margin: '10px', padding: '10px 20px' }}>Login</button>
+                        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                            Login
+                        </button>
                     </Link>
                     <Link to="/register">
-                        <button style={{ margin: '10px', padding: '10px 20px' }}>Register</button>
+                        <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
+                            Register
+                        </button>
                     </Link>
                 </div>
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                </Routes>
+                <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                </div>
             </div>
         </Router>
     );
